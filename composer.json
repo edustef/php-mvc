@@ -1,0 +1,15 @@
+{
+    "name": "edustef/mini-mvc-framework",
+    "authors": [
+        {
+            "name": "Eduard Stefan",
+            "email": "eduardstefan290@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {}
+}
