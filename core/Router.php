@@ -6,9 +6,11 @@ class Router
 {
   protected array $routes = [];
   protected Request $request;
+  protected Response $response;
 
-  public function __construct($request)
+  public function __construct(Request $request, Response $response)
   {
+    $this->response = $response;
     $this->request = $request;
   }
 
@@ -17,21 +19,49 @@ class Router
     $this->routes['get'][$path] = $callback;
   }
 
+  public function post($path, $callback)
+  {
+    $this->routes['post'][$path] = $callback;
+  }
+
   public function resolve()
   {
     $path = $this->request->getPath();
     $method = $this->request->getMethod();
 
-    echo '<pre>'.print_r($routes, true).'</pre>';
-
     $callback = $this->routes[$method][$path] ?? false;
 
     if ($callback === false) {
-      // TODO - make it return a status of 404
-      echo "404 not found";
+      $this->response->setStatusCode(404);
+      return $this->renderView('_404');
       exit;
     }
 
-    echo call_user_func($callback);
+    if (is_string($callback)) {
+      return $this->renderView($callback);
+    }
+
+    return call_user_func($callback);
+  }
+
+  public function renderView($view)
+  {
+    $layoutContent = $this->layoutContent();
+    $viewContent = $this->viewContent($view);
+    return str_replace('{{content}}', $viewContent, $layoutContent);
+  }
+
+  protected function layoutContent()
+  {
+    ob_start();
+    include_once Application::$ROOT_DIR . '/views/layouts/main.php';
+    return ob_get_clean();
+  }
+
+  protected function viewContent($view)
+  {
+    ob_start();
+    include_once Application::$ROOT_DIR . '/views/' . $view . '.php';
+    return ob_get_clean();
   }
 }
