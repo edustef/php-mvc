@@ -30,8 +30,13 @@ class User extends DatabaseModel
     return parent::save();
   }
 
-  public function tableName(): string
+  public static function tableName(): string
   {
     return 'User';
+  }
+
+  public function primaryKey(): string
+  {
+    return 'id';
   }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use app\core\Application;
+
+echo '<pre>' . print_r(Application::$app->user, true) . '</pre>';
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,9 +33,9 @@ use app\core\Application;
     </div>
   </nav>
   <main class="mt-4 container">
-    <?php if (Application::$app->flash->getFlash('success')) : ?>
+    <?php if (Application::$app->session->getSession('success')) : ?>
       <div class="alert alert-success">
-        <?php echo Application::$app->flash->getFlash('success') ?>
+        <?php echo Application::$app->session->getSession('success') ?>
       </div>
     <?php endif; ?>
     {{content}}
