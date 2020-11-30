@@ -2,7 +2,6 @@
 
 use app\core\Application;
 
-echo '<pre>' . print_r(Application::$app->user, true) . '</pre>';
 ?>
 <!doctype html>
 <html lang="en">
@@ -30,7 +29,25 @@ echo '<pre>' . print_r(Application::$app->user, true) . '</pre>';
           <a class="nav-link" href="/contact">Contact</a>
         </li>
       </ul>
-    </div>
+      <?php if (Application::isGuest()) : ?>
+        <ul class="navbar-nav mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        </ul>
+      <?php else : ?>
+        <ul class="navbar-nav mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="/login">Logged in as <?= Application::$app->user->email ?> <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+      <?php endif ?>
   </nav>
   <main class="mt-4 container">
     <?php if (Application::$app->session->getSession('success')) : ?>

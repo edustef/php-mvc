@@ -30,7 +30,7 @@ class AuthController extends Controller
     ]);
   }
 
-  public function register(Request $request)
+  public function register(Request $request, Response $response)
   {
     $user = new User();
     if ($request->isPost()) {
@@ -49,5 +49,11 @@ class AuthController extends Controller
     return $this->render('register', [
       'model' => $user
     ]);
+  }
+
+  public function logout()
+  {
+    Application::$app->logout();
+    Application::$app->response->redirect('/');
   }
 }
