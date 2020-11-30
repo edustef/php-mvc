@@ -9,9 +9,11 @@ abstract class Model
   public const RULE_MIN = 'min';
   public const RULE_MAX = 'max';
   public const RULE_MATCH = 'match';
+  public const RULE_UNIQUE = 'unique';
+
+  abstract public function attributes(): array;
 
   public array $errors = [];
-
 
   public function loadData($data)
   {
@@ -23,6 +25,11 @@ abstract class Model
   }
 
   abstract public function rules(): array;
+
+  public function getLabel($attribute)
+  {
+    return $this->attributes()[$attribute];
+  }
 
   public function validate()
   {
@@ -52,7 +59,22 @@ abstract class Model
         }
 
         if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
-          $this->addError($attribute, self::RULE_MATCH, $rule);
+          $this->addError($attribute, self::RULE_MATCH, ['match' => $this->getLabel($rule['match'])]);
+        }
+
+        if ($ruleName === self::RULE_UNIQUE) {
+          $className = $rule['class'];
+          $uniqueAttribute = $rule['attribute'] ?? $attribute;
+          $tableName = $className::tableName();
+
+          $query = 'SELECT * FROM ' . $tableName . ' WHERE ' . $uniqueAttribute . ' = :attribute';
+          $stmnt = Application::$app->database->pdo->prepare($query);
+          $stmnt->bindValue(':attribute', $value);
+          $stmnt->execute();
+          $record = $stmnt->fetchObject();
+          if ($record) {
+            $this->addError($attribute, self::RULE_UNIQUE, ['unique' => $this->getLabel($attribute)]);
+          }
         }
       }
     }
@@ -74,11 +96,12 @@ abstract class Model
   public function errorMessages($ruleName): string
   {
     $errorMessages = [
-      self::RULE_REQUIRED => 'This field is required',
-      self::RULE_EMAIL => 'This field must be a valid email address',
-      self::RULE_MIN => 'Min length of this field must be {min}',
-      self::RULE_MAX => 'Max length of this field must be {max}',
-      self::RULE_MATCH => 'This field must be the same as {match}',
+      self::RULE_REQUIRED => 'This field is required.',
+      self::RULE_EMAIL => 'This field must be a valid email address.',
+      self::RULE_MIN => 'Min length of this field must be {min}.',
+      self::RULE_MAX => 'Max length of this field must be {max}.',
+      self::RULE_MATCH => 'This field must match with {match} field.',
+      self::RULE_UNIQUE => 'A record with this {unique} already exists.',
     ];
 
     return $errorMessages[$ruleName] ?? '';

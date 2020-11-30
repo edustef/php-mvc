@@ -19,7 +19,7 @@ class FormField
       <div class="form-group">
         <label for="' . $name . '">' . $labelName . '</label>
         <input name="' . $name . '" value="' . $model->{$name} . '" class="form-control ' . $isInvalidClass . '" type="' . $type . '">
-        <div class="input-feedback">' . $model->getFirstError($name) . '</div>
+        <small style="display:inline-block;height:1rem" class="text-danger">' . $model->getFirstError($name) . '</small>
       </div>
     ';
   }
