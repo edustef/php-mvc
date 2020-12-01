@@ -1,5 +1,6 @@
 {
     "name": "edustef/mini-mvc-framework",
+    "description": "My framework",
     "authors": [
         {
             "name": "Eduard Stefan",
@@ -8,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "app\\": "./"
+            "app\\": "./src"
         }
     },
     "require": {
