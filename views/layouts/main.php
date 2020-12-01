@@ -41,7 +41,7 @@ use app\core\Application;
       <?php else : ?>
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="/login">Logged in as <?= Application::$app->user->email ?> <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/profile/username">Logged in as <?= Application::$app->user->email ?> <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
@@ -50,9 +50,9 @@ use app\core\Application;
       <?php endif ?>
   </nav>
   <main class="mt-4 container">
-    <?php if (Application::$app->session->getSession('success')) : ?>
+    <?php if (Application::$app->session->getFlashSession('success')) : ?>
       <div class="alert alert-success">
-        <?php echo Application::$app->session->getSession('success') ?>
+        <?php echo Application::$app->session->getFlashSession('success') ?>
       </div>
     <?php endif; ?>
     {{content}}

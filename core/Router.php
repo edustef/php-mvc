@@ -14,16 +14,29 @@ class Router
     $this->request = $request;
   }
 
+  /**
+   * Adds the path and callback to the GET router
+   * The callback is called when resolving the path 
+   */
   public function get($path, $callback)
   {
     $this->routes['get'][$path] = $callback;
   }
 
+  /**
+   * Adds the path and callback to the POST router. 
+   * The callback is called when resolving the path 
+   */
   public function post($path, $callback)
   {
     $this->routes['post'][$path] = $callback;
   }
 
+  /**
+   * Will resolve the method and path of the REQUEST
+   * and will run the proper controller and the callback
+   * 
+   */
   public function resolve()
   {
     $path = $this->request->getPath();
@@ -47,7 +60,7 @@ class Router
       $callback[0] = Application::$app->controller;
     }
 
-    return call_user_func($callback, $this->request);
+    return call_user_func($callback, $this->request, $this->response);
   }
 
   public function renderView($view, $params = [])

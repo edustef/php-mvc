@@ -5,20 +5,21 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Response;
 use app\models\User;
 use app\models\LoginForm;
 
 class AuthController extends Controller
 {
-  public function login(Request $request)
+  public function login(Request $request, Response $response)
   {
     $loginForm = new LoginForm();
     if ($request->isPost()) {
       $loginForm->loadData($request->getBody());
 
       if ($loginForm->validate() && $loginForm->login()) {
-        Application::$app->session->setSession('success', 'Welcome back!');
-        Application::$app->response->redirect('/');
+        Application::$app->session->setFlashSession('success', 'Welcome back!');
+        $response->redirect('/');
       }
       return $this->render('login', [
         'model' => $loginForm
@@ -37,8 +38,8 @@ class AuthController extends Controller
       $user->loadData($request->getBody());
 
       if ($user->validate() && $user->save()) {
-        Application::$app->session->setSession('success', 'Thanks for registering!');
-        Application::$app->response->redirect('/');
+        Application::$app->session->setFlashSession('success', 'Thanks for registering!');
+        $response->redirect('/');
       }
 
       return $this->render('register', [
@@ -51,9 +52,9 @@ class AuthController extends Controller
     ]);
   }
 
-  public function logout()
+  public function logout(Request $request, Response $response)
   {
     Application::$app->logout();
-    Application::$app->response->redirect('/');
+    $response->redirect('/');
   }
 }

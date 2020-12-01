@@ -43,7 +43,7 @@ class Application
     echo $this->router->resolve();
   }
 
-  public function login(DatabaseModel $user)
+  public function login(DatabaseModel $user): bool
   {
     $this->user = $user;
     $primaryKey = $user->primaryKey();
@@ -59,7 +59,7 @@ class Application
     $this->session->remove('user');
   }
 
-  public static function isGuest()
+  public static function isGuest(): bool
   {
     return !self::$app->user;
   }

@@ -33,12 +33,12 @@ class Session
     unset($_SESSION[$key]);
   }
 
-  public function getSession($key)
+  public function getFlashSession($key)
   {
     return $_SESSION[self::FLASH_KEY][$key]['value'] ?? [];
   }
 
-  public function setSession($key, $message)
+  public function setFlashSession($key, $message)
   {
     $_SESSION[self::FLASH_KEY][$key] = [
       'remove' => false,

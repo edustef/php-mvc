@@ -12,7 +12,7 @@ class FormField
   public const TYPE_COLOR = 'color';
   public const TYPE_DATE = 'date';
 
-  public static function render(Model $model, $name, $labelName, $type = 'text')
+  public static function render(Model $model, string $name, string $labelName, string $type = 'text'): string
   {
     $isInvalidClass = $model->hasErrors($name) ? 'is-invalid' : '';
     return '
