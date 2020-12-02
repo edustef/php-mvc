@@ -4,14 +4,17 @@ namespace app\core;
 
 class Application
 {
+
+  public string $layout = 'main';
   public static Application $app;
   public static string $ROOT_DIR;
   public Database $database;
   public Router $router;
+  public View $view;
   public Request $request;
   public Response $response;
   public Session $session;
-  public Controller $controller;
+  public ?Controller $controller = null;
   public ?DatabaseModel $user;
   public string $userClass;
 
@@ -23,7 +26,7 @@ class Application
     $this->response = new Response();
     $this->router = new Router($this->request, $this->response);
     $this->session = new Session();
-    $this->controller = new Controller();
+    $this->view = new View();
 
     $this->userClass = $config['userClass'];
     $this->database = new Database($config['db']);
@@ -40,7 +43,14 @@ class Application
 
   public function run()
   {
-    echo $this->router->resolve();
+    try {
+      echo $this->router->resolve();
+    } catch (\Exception $e) {
+      $this->response->setStatusCode($e->getCode());
+      echo $this->view->renderView('_error', [
+        'exception' => $e
+      ]);
+    }
   }
 
   public function login(DatabaseModel $user): bool

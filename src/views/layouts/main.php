@@ -10,7 +10,7 @@ use app\core\Application;
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <title>App</title>
+  <title><?= $this->title ?></title>
 </head>
 
 <body>
@@ -41,7 +41,7 @@ use app\core\Application;
       <?php else : ?>
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="/profile/username">Logged in as <?= Application::$app->user->email ?> <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/profile">Logged in as <?= Application::$app->user->email ?> <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
