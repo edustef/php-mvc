@@ -2,10 +2,13 @@
 
 namespace app\core;
 
-use app\core\exception\NotFoundException;
+use app\core\exceptions\NotFoundException;
 
 class Router
 {
+  /**
+   * This stores an array of arrays with the format 
+   */
   protected array $routes = [];
   public Request $request;
   public Response $response;
@@ -36,10 +39,11 @@ class Router
 
   /**
    * Will resolve the method and path of the REQUEST
-   * and will run the proper controller and the callback
-   * 
+   * and will create the controller and run it's method referenced by the callback.
+   * @throws NotFoundException; 
+   * @throws ForbiddenException;
    */
-  public function resolve()
+  public function resolve() :string
   {
     $path = $this->request->getPath();
     $method = $this->request->method();
@@ -51,7 +55,7 @@ class Router
     }
 
     if (is_string($callback)) {
-      return $this->renderView($callback);
+      return Application::$app->view->renderView($callback);
     }
 
     //create instance of controller

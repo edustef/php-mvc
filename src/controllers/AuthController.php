@@ -6,7 +6,7 @@ use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
 use app\core\Response;
-use app\core\middleware\AuthMiddleware;
+use app\core\middlewares\AuthMiddleware;
 use app\models\User;
 use app\models\LoginForm;
 

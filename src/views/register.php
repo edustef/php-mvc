@@ -4,7 +4,7 @@
  * @var $model \app\models\User
  */
 
-use app\core\form\FormField;
+use app\core\forms\FormField;
 
 ?>
 

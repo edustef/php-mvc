@@ -4,40 +4,41 @@ namespace app\core;
 
 class Application
 {
-
-  public string $layout = 'main';
   public static Application $app;
   public static string $ROOT_DIR;
-  public Database $database;
+
   public Router $router;
   public View $view;
   public Request $request;
   public Response $response;
   public Session $session;
+  // Controller is instanciated in Router class 
   public ?Controller $controller = null;
-  public ?DatabaseModel $user;
-  public string $userClass;
+
+  // CONFIG Variables
+  public Database $database;
+  public ?DatabaseModel $user = null;
+  private string $userClass;
 
   public function __construct(string $rootPath, array $config)
   {
     self::$ROOT_DIR = $rootPath;
     self::$app = $this;
+
     $this->request = new Request();
     $this->response = new Response();
-    $this->router = new Router($this->request, $this->response);
     $this->session = new Session();
     $this->view = new View();
+    $this->router = new Router($this->request, $this->response);
 
     $this->userClass = $config['userClass'];
     $this->database = new Database($config['db']);
 
+    // Get the User from Session if it exists
     $primaryValue = $this->session->get('user');
-
     if ($primaryValue) {
       $primaryKey = $this->userClass::primaryKey();
       $this->user = $this->userClass::findOne([$primaryKey => $primaryValue]);
-    } else {
-      $this->user = null;
     }
   }
 

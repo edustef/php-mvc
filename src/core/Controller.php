@@ -2,12 +2,11 @@
 
 namespace app\core;
 
-use app\core\middleware\Middleware;
+use app\core\middlewares\Middleware;
 
 class Controller
 {
   public array $middlewares = [];
-  public string $layout = 'main';
   public string $action = '';
 
   public function render($view, $params = [])
@@ -15,12 +14,8 @@ class Controller
     return Application::$app->view->renderView($view, $params);
   }
 
-  public function setLayout($layout)
+  public function registerMiddleware(Middleware $middleware)
   {
-    $this->layout = $layout;
-  }
-
-  public function registerMiddleware(Middleware $middleware) {
     $this->middlewares[] = $middleware;
   }
 }
