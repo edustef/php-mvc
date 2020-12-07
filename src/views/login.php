@@ -4,7 +4,7 @@
  * @var $model \app\models\User
  */
 
-use app\core\forms\FormField;
+use edustef\mvcFrame\forms\FormField;
 ?>
 
 <h1>Login page</h1>

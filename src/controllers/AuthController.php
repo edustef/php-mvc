@@ -2,11 +2,11 @@
 
 namespace app\controllers;
 
-use app\core\Application;
-use app\core\Controller;
-use app\core\Request;
-use app\core\Response;
-use app\core\middlewares\AuthMiddleware;
+use edustef\mvcFrame\Application;
+use edustef\mvcFrame\Controller;
+use edustef\mvcFrame\Request;
+use edustef\mvcFrame\Response;
+use edustef\mvcFrame\middlewares\AuthMiddleware;
 use app\models\User;
 use app\models\LoginForm;
 

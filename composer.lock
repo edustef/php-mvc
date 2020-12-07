@@ -4,8 +4,36 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccecd7e8ed89867655d9599ec419978b",
+    "content-hash": "37fbb19972dd97e214d808dc1bf97d62",
     "packages": [
+        {
+            "name": "edustef/php-mvc-framework",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/edustef/php-mvc-framework.git",
+                "reference": "4d94154d48c661661fa33fd7f1bdcaaf96693f7a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/edustef/php-mvc-framework/zipball/4d94154d48c661661fa33fd7f1bdcaaf96693f7a",
+                "reference": "4d94154d48c661661fa33fd7f1bdcaaf96693f7a",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Eduard Stefan",
+                    "email": "eduardstefan290@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/edustef/php-mvc-framework/issues",
+                "source": "https://github.com/edustef/php-mvc-framework/tree/v1.0.1"
+            },
+            "time": "2020-12-06T11:33:07+00:00"
+        },
         {
             "name": "graham-campbell/result-type",
             "version": "v1.0.1",
@@ -451,5 +479,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

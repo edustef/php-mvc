@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 'on');
 
-use app\core\Application;
+use edustef\mvcFrame\Application;
 use app\controllers\SiteController;
 use app\controllers\AuthController;
 use app\models\User;

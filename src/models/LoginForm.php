@@ -2,8 +2,8 @@
 
 namespace app\models;
 
-use app\core\Application;
-use app\core\Model;
+use edustef\mvcFrame\Application;
+use edustef\mvcFrame\Model;
 use app\models\User;
 
 class LoginForm extends Model

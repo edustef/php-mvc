@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\core\Controller;
-use app\core\Request;
+use edustef\mvcFrame\Controller;
+use edustef\mvcFrame\Request;
 
 class SiteController extends Controller
 {

@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use app\core\DatabaseModel;
+use edustef\mvcFrame\DatabaseModel;
 
 class User extends DatabaseModel
 {

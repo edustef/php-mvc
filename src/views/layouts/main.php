@@ -1,6 +1,6 @@
 <?php
 
-use app\core\Application;
+use edustef\mvcFrame\Application;
 
 ?>
 <!doctype html>
