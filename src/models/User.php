@@ -21,7 +21,11 @@ class User extends DatabaseModel
 
   public function attributes(): array
   {
-    return ['email' => 'Email', 'password' => 'Password'];
+    return [
+      'email' => ['isSaved' => true, 'label' => 'Email'],
+      'password' => ['isSaved' => true, 'Password'],
+      'passwordConfirm' => ['isSaved' => false, 'PasswordConfirm']
+    ];
   }
 
   public function save()

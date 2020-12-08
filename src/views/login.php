@@ -1,15 +1,16 @@
 <?php
 
 /**
- * @var $model \app\models\User
+ * @var edustef\mvcFrame\Model $model
  */
 
-use edustef\mvcFrame\forms\FormField;
+use app\views\components\FormField;
+
 ?>
 
 <h1>Login page</h1>
 <form action="" method="POST">
-  <?= FormField::render($model, 'email', 'Email', FormField::TYPE_EMAIL) ?>
-  <?= FormField::render($model, 'password', 'Password', FormField::TYPE_PASSWORD) ?>
+  <?= new FormField($model, 'email', FormField::TYPE_EMAIL) ?>
+  <?= new FormField($model, 'password', FormField::TYPE_PASSWORD) ?>
   <button type="submit" class="btn btn-primary">Submit</button>
-</form
+</form>

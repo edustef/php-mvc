@@ -4,14 +4,14 @@
  * @var $model \app\models\User
  */
 
-use edustef\mvcFrame\forms\FormField;
+use app\views\components\FormField;
 
 ?>
 
 <h1>Register page</h1>
 <form action="" method="POST">
-  <?= FormField::render($model, 'email', 'Email', FormField::TYPE_EMAIL) ?>
-  <?= FormField::render($model, 'password', 'Password', FormField::TYPE_PASSWORD) ?>
-  <?= FormField::render($model, 'passwordConfirm', 'Confirm Password', FormField::TYPE_PASSWORD) ?>
+  <?= new FormField($model, 'email', FormField::TYPE_EMAIL) ?>
+  <?= new FormField($model, 'password', FormField::TYPE_PASSWORD) ?>
+  <?= new FormField($model, 'passwordConfirm', FormField::TYPE_PASSWORD) ?>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

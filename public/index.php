@@ -1,14 +1,14 @@
 <?php
 ini_set('display_errors', 'on');
 
-use edustef\mvcFrame\Application;
+require_once __DIR__ . '/../vendor/autoload.php';
+
 use app\controllers\SiteController;
 use app\controllers\AuthController;
 use app\models\User;
+use edustef\mvcFrame\Application;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv = \Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 $config = [
@@ -17,7 +17,9 @@ $config = [
     'dsn' => $_ENV['DB_DSN'],
     'user' => $_ENV['DB_USER'],
     'password' => $_ENV['DB_PASSWORD']
-  ]
+  ],
+  'defaultLayout' => 'main',
+  'title' => 'Demo App'
 ];
 
 $app = new Application(dirname(__DIR__) . '/src/', $config);
