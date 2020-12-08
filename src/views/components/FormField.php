@@ -22,7 +22,7 @@ class FormField extends Component
   {
     $this->model = $model;
     $this->name = $name;
-    $this->labelName = $this->model->attributes()[$name];
+    $this->labelName = $this->model->getLabel($name);
     $this->type = $type;
   }
 

@@ -14,3 +14,20 @@ use app\views\components\FormField;
   <?= new FormField($model, 'password', FormField::TYPE_PASSWORD) ?>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<script>
+  document.querySelector('input[name=email]').addEventListener('keyup', async (e) => {
+    let fd = new FormData();
+    fd.append('email', e.target.value);
+    fd.append('isAjax', true);
+
+    let res = await fetch('/login', {
+      method: "POST",
+      body: fd
+    });
+
+    let data = await res.text();
+
+    console.log(data);
+  });
+</script>

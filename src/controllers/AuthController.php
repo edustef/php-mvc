@@ -19,7 +19,6 @@ class AuthController extends Controller
 
   public function login(Request $request, Response $response)
   {
-    Application::$app->view->title .= 'Login';
     $loginForm = new LoginForm();
     if ($request->isPost()) {
       $loginForm->loadData($request->getBody());
@@ -28,9 +27,6 @@ class AuthController extends Controller
         Application::$app->session->setFlashSession('success', 'Welcome back!');
         $response->redirect('/');
       }
-      return $this->render('login', [
-        'model' => $loginForm
-      ]);
     }
 
     return $this->render('login', [

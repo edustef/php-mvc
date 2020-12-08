@@ -21,7 +21,10 @@ class LoginForm extends Model
 
   public function attributes(): array
   {
-    return ['email' => 'Email', 'password' => 'Password'];
+    return [
+      'email' => ['isSaved' => true, 'label' => 'Email'], 
+      'password' => ['isSaved' => true, 'label' => 'Password']
+    ];
   }
 
   public function login()

@@ -23,8 +23,8 @@ class User extends DatabaseModel
   {
     return [
       'email' => ['isSaved' => true, 'label' => 'Email'],
-      'password' => ['isSaved' => true, 'Password'],
-      'passwordConfirm' => ['isSaved' => false, 'PasswordConfirm']
+      'password' => ['isSaved' => true, 'label' => 'Password'],
+      'passwordConfirm' => ['isSaved' => false, 'label' => 'PasswordConfirm']
     ];
   }
 
