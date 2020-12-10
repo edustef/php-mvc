@@ -46,10 +46,6 @@ class AuthController extends Controller
         Application::$app->session->setFlashSession('success', 'Thanks for registering!');
         $response->redirect('/');
       }
-
-      return $this->render('register', [
-        'model' => $user
-      ]);
     }
 
     return $this->render('register', [

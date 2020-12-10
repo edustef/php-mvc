@@ -20,7 +20,6 @@ class SiteController extends Controller
   public function contact(Request $request)
   {
     if ($request->isPost()) {
-      $body = $request->getBody();
       return  'handle contact';
     }
     $params = [
