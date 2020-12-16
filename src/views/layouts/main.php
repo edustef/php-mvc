@@ -2,6 +2,8 @@
 
 use edustef\mvcFrame\Application;
 
+$app = Application::$app;
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,7 +31,7 @@ use edustef\mvcFrame\Application;
           <a class="nav-link" href="/contact">Contact</a>
         </li>
       </ul>
-      <?php if (Application::isGuest()) : ?>
+      <?php if ($app->isGuest()) : ?>
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="nav-item active">
             <a class="nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
@@ -41,7 +43,7 @@ use edustef\mvcFrame\Application;
       <?php else : ?>
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="/profile">Logged in as <?= Application::$app->user->email ?> <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/profile">Logged in as <?= $app->user->email ?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
@@ -50,9 +52,9 @@ use edustef\mvcFrame\Application;
       <?php endif ?>
   </nav>
   <main class="mt-4 container">
-    <?php if (Application::$app->session->getFlashSession('success')) : ?>
+    <?php if ($app->session->getFlashSession('success')) : ?>
       <div class="alert alert-success">
-        <?php echo Application::$app->session->getFlashSession('success') ?>
+        <?php echo $app->session->getFlashSession('success') ?>
       </div>
     <?php endif; ?>
     {{content}}

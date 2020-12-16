@@ -28,7 +28,7 @@ class Application
     $this->request = new Request();
     $this->response = new Response();
     $this->session = new Session();
-    $this->view = new View($config['defaultLayout'] ?? '', $config['title'] ?? '');
+    $this->view = new View($config['defaultLayout'] ?? '', $config['title'] ?? 'PHP Application');
     $this->router = new Router($this->request, $this->response);
 
     $this->userClass = $config['userClass'] ?? '';
