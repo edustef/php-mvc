@@ -12,8 +12,8 @@
     },
     "autoload": {
         "psr-4": {
-            "app\\":"./src",
-            "edustef\\mvcFrame\\": "./src/core"
+            "app\\": ".",
+            "edustef\\mvcFrame\\": "./core"
         }
     }
 }
